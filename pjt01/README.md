@@ -171,13 +171,37 @@ def max_revenue(movies):
 
 
 #### E. 알고리즘을 통한 데이터 출력
-세부적인 영화 정보 중 개봉일 정보 release_date) 를 이용하여 모든 영화 중 12 월
-에 개봉한 영화들의 제목 리스트를 출력하는 알고리즘을 작성합니다 해당 데이
-터는 향후 커뮤니티 서비스에서 추천기능의 정보로 사용됩니다
+세부적인 영화 정보 중 개봉일 정보 release_date) 를 이용하여 모든 영화 중 12 월에 개봉한 영화들의 제목 리스트를 출력하는 알고리즘을 작성합니다 해당 데이터는 향후 커뮤니티 서비스에서 추천기능의 정보로 사용됩니다.
+
+```python
+def dec_movies(movies):
+    pass
+    # 여기에 코드를 작성합니다.  
+    result_list=[]
+
+    for movie in movies:
+        movie_id = movie['id']         # movies 폴더에 있는 data를 불러오기 위해 id 변수 생성
+       
+        movies_json = open(f'data/movies/{movie_id}.json', encoding='UTF8')    
+        movies_list = json.load(movies_json)
+
+        if int(movies_list['release_date'][5:7]) == 12:  # 이놈의 int()안붙여서!!
+
+            result_list.append(movies_list['original_title'])
+            
+    return result_list
+
+```
+
+
+
+
 
 > 과정
 
 코드는 금방 짠거 같은데 자꾸 str, int 에러랑 for문으로 뽑은게 dict인걸 까먹는다....
 
-리스트 업데이트를 += 랑 append랑 별 짓을 했는데 빈 리스트 나오네.....ㅠㅠ
+리스트 업데이트를 += 랑 append랑 별 짓을 했는데 빈 리스트 나오네.....▷if 문애 int()!!!!!!!
+
+
 
