@@ -98,7 +98,36 @@ def movie_info(movie):
   
   사실 이런 두 데이터를 연결하는 것은 merge 방법으로 했었는데 이렇게 for문을 짜는 것이 생소했다.
   
-  또한, 데이터프레임만 주구장창 다뤄봤지 이런 list와 dict이랑 안친해서 더 친해져야 겠다.
+  또한, 데이터프레임만 주구장창 다뤄봤지 이런 list와 dict이랑 안친해서 더 친해져야 겠다. 
+  
+  > 저 위에 코드는 genre 두개를 불러와야하는데 마지막  하나만 불러와진다.
+
++ 추가(01.24 
+
++ ```python
+  def movie_info(movie, genres): 
+      pass
+      # 여기에 코드를 작성합니다.  
+      result = {}
+      list_n =[]
+      for id in movie['genre_ids']:
+          for movie_dict in genres:
+              if movie_dict['id'] == id:
+                  list_n += [movie_dict['name']] #append랑 결과 다름
+  
+      result['genre_names'] = list_n # [list_n]이랑 결과 다름 
+  
+      result['id'] = movie['id']
+      result['title'] = movie['title']
+      result['poster_path'] = movie['poster_path']
+      result['vote_average'] = movie['vote_average']
+      result['poster_path'] = movie['poster_path']
+      result['overview'] = movie['overview']
+      return result  
+  pprint(movie_info(movie, genres_list))   
+  ```
+
+  > 월말평가 대비로 다시 풀어보면서 이전 코드가 틀렸다는 걸 알게되었다.
 
 
 
@@ -195,13 +224,11 @@ def dec_movies(movies):
 
 
 
-
-
 > 과정
 
 코드는 금방 짠거 같은데 자꾸 str, int 에러랑 for문으로 뽑은게 dict인걸 까먹는다....
 
-리스트 업데이트를 += 랑 append랑 별 짓을 했는데 빈 리스트 나오네.....▷if 문애 int()!!!!!!!
+리스트 업데이트를 += 랑 append랑 별 짓을 했는데 빈 리스트 나오네.....▷if 문에 int()!!!!!!!
 
 
 
